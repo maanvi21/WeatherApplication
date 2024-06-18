@@ -14,7 +14,8 @@ class AuthHomePage extends StatefulWidget {
 }
 
 class _AuthHomePageState extends State<AuthHomePage> {
-  //The below line is used when we cant to use a package that has been imported
+  //he line creates an instance of the LocalAuthentication class.
+  //This instance (_auth) can then be used to access the methods provided by the LocalAuthentication class.
   final LocalAuthentication _auth = LocalAuthentication();
   bool _isAuthenticated = false;
   @override
@@ -53,11 +54,12 @@ class _AuthHomePageState extends State<AuthHomePage> {
                     if (canAuththenticateWitBiometrics) {
                       //function that shows the popup to allow the user to actually authenticate themselves
                       final bool didAuthenticate = await _auth.authenticate(
-                          localizedReason:
-                              "Pease authenticate to allow weather to acess your information ",
-                          //to not allow lockcreen passwords
-                          options:
-                              const AuthenticationOptions(biometricOnly: true));
+                        localizedReason:
+                            "Pease authenticate to allow weather to acess your information ",
+                        //to not allow lockcreen passwords
+                        // options:
+                        //     const AuthenticationOptions(biometricOnly: true)
+                      );
                     }
                     Navigator.push(
                       context,
