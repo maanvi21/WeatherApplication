@@ -4,6 +4,7 @@ import 'package:lottie/lottie.dart';
 
 import 'package:weather_app/models/weather_model.dart';
 import 'package:weather_app/services/weather_service.dart';
+import 'package:weather_app/widgets/custom_app_bar.dart';
 
 class Weatherpage extends StatefulWidget {
   const Weatherpage({Key? key}) : super(key: key);
@@ -65,21 +66,29 @@ class _WeatherpageState extends State<Weatherpage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            //city name
-            Text(_weather?.cityName ?? "Loading city..."),
-            //animations
-            Lottie.asset(getWeatherAnimation(_weather?.mainCondition)),
-            //temprature
-            Text('${_weather?.temperature.round()} °C'),
-            //weather condition to match with the animation
-            Text(_weather?.mainCondition ?? "")
-          ],
-        ),
+        body: Column(children: [
+      const SizedBox(height: 50),
+      const CustomAppBar(
+        title: "Check the Weather at your Location",
+        titleColor: Colors.black,
       ),
-    );
+      Expanded(
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              //city name
+              Text(_weather?.cityName ?? "Loading city..."),
+              //animations
+              Lottie.asset(getWeatherAnimation(_weather?.mainCondition)),
+              //temprature
+              Text('${_weather?.temperature.round()} °C'),
+              //weather condition to match with the animation
+              Text(_weather?.mainCondition ?? "")
+            ],
+          ),
+        ),
+      )
+    ]));
   }
 }

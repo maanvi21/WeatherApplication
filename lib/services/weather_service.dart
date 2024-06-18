@@ -13,10 +13,14 @@ class WeatherService {
   const WeatherService({required this.apiKey});
   // we have created a future method
   Future<Weather> getWeather(String cityName) async {
+    //Uses the http package to make a GET request (http.get) to the OpenWeatherMap API endpoint constructed using Uri.parse.
     final response = await http
         .get(Uri.parse('$BASE_URL?q=$cityName&appid=$apiKey&units=metric'));
 
     if (response.statusCode == 200) {
+//If the HTTP response status code (response.statusCode) is 200, indicating success, the JSON response body (response.body) is decoded into a Dart object using jsonDecode.
+//The decoded JSON data is then passed to the Weather.fromJson factory constructor to create a Weather object.
+//This constructor maps the JSON fields (name, main.temp, weather[0].main) to the corresponding properties of the Weather class.
       return Weather.fromJson(jsonDecode(response.body));
     } else {
       throw Exception('Failed to load weather data');
@@ -25,7 +29,7 @@ class WeatherService {
 
   // adding another future method
   Future<String> getCurrenntCity() async {
-    //location permission is a feature of geolocator package in flutter!
+    //location permission is a feature of geolocator package in flutter
     LocationPermission permission = await Geolocator.checkPermission();
     if (permission == LocationPermission.denied) {
       permission = await Geolocator.requestPermission();
