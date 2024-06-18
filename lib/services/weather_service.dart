@@ -1,5 +1,7 @@
-import 'dart:convert';
+// so basically this page gets infromation from weather api and if the response is successfull,
+// the infromation is passed onto weather_model.dart in the form of a json object
 
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
