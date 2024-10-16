@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:weather_app/authentication/auth_home_page.dart';
+
 import 'package:weather_app/pages/weatherpage.dart';
+import 'package:weather_app/widgets/custom_search_bar.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,7 +15,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      home: AuthHomePage(),
+      home: CustomSearchBar(
+        placeholder: 'Search for',
+      ),
     );
   }
 }
